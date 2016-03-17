@@ -115,7 +115,5 @@ set -o nounset # no more unbound variable references expected
 
 shift $((OPTIND-1))
 
-#[ "${1:-}" = "--" ] && shift || true
 [ "${1:-}" = "--" ] && shift || true
 }
-

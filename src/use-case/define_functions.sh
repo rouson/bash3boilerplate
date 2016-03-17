@@ -51,7 +51,7 @@ function _fmt ()      {
 }
 
 # This block of single-line functions below all print to STDERR, leaving STDOUT for piping machine readable information to other software.
-# Above each such function is a commented demonstration of its usage.  Execution continues after an invocation of each function, except 
+# Above each such function is a commented demonstration of its usage.  Execution continues after an invocation of each function, except
 # the "emergency" function, which causes termination with a non-zero exit status.
 
 # emergency "A \"panic\" condition usually affecting multiple apps/servers/sites. At this level it would usually notify all tech staff on call."
@@ -79,9 +79,3 @@ function help () {
   echo "" 1>&2
   exit 1
 }
-
-function cleanup_before_exit () {
-  info "Cleaning up. Done"
-}
-trap cleanup_before_exit EXIT
-
