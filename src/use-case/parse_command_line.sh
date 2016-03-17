@@ -29,7 +29,8 @@
 
 ### Parse commandline options
 #####################################################################
-function parse(){
+function parse_command_line(){
+# source this script and pass $@ as the argument
 
 # Translate usage string -> getopts arguments, and set $arg_<flag> defaults
 while read line; do
@@ -63,7 +64,7 @@ while read line; do
     match="$(echo "${line}" |sed 's#^.*Default=\(\)#\1#g')"
     eval "${varname}=\"${match}\""
   fi
-done <<< "${usage}"
+done < "${usage_page}"
 
 # Allow long options like --this
 opts="${opts}-:"
@@ -117,3 +118,6 @@ shift $((OPTIND-1))
 
 [ "${1:-}" = "--" ] && shift || true
 }
+ export -f parse_command_line
+
+# parse_command_line $@ # make available as function but may as well also parse if

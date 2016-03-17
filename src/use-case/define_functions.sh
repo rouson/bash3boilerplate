@@ -75,7 +75,16 @@ function help () {
   echo "" 1>&2
   echo " ${@}" 1>&2
   echo "" 1>&2
-  echo "  ${usage}" 1>&2
+  cat "${usage_page}" 1>&2
   echo "" 1>&2
   exit 1
 }
+export -f help
+export -f emergency
+export -f alert
+export -f critical
+export -f error
+export -f warning
+export -f notice
+export -f info
+export -f debug
