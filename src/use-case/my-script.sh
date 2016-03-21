@@ -61,6 +61,7 @@ trap cleanup_before_exit EXIT # The signal is specified here. Could be SIGINT, S
 ### Validation (decide what's required for running your script and error out)
 #####################################################################
 
+[ -z "${arg_p:-}" ]     && help      "Setting a package name with -p or --package is required"
 [ -z "${LOG_LEVEL:-}" ] && emergency "Cannot continue without LOG_LEVEL. "
 
 ### Runtime
