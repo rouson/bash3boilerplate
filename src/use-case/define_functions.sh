@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 # BASH3 Boilerplate
 #
-# This file:
+#  define_functions.sh
 #
-#  - Is a template to write better bash scripts
-#  - Is delete-key friendly, in case you don't need e.g. command line option parsing
+#  - Defines helper functions containing commands extracted from the 
+#    bash3boilerplate main.sh as part of a refactoring to facilitate 
+#    wholesale reuse of main.sh's contents of without modification.
+#
+# Usage (as invoked in bootstrap.sh): 
+#
+#   source define_functions.sh
 #
 # More info:
 #
@@ -20,9 +25,6 @@
 #  - Alexander Rathai (Alexander.Rathai@gmail.com)
 #  - Dr. Damian Rouson (http://www.sourceryinstitute.org/) (documentation)
 #
-# Usage:
-#
-#  LOG_LEVEL=7 ./main.sh -f /tmp/x -d
 #
 # Licensed under MIT
 # Copyright (c) 2013 Kevin van Zonneveld (http://kvz.io)
@@ -50,9 +52,12 @@ function _fmt ()      {
   echo -e "$(date -u +"%Y-%m-%d %H:%M:%S UTC") ${color}$(printf "[%9s]" ${1})${color_reset}";
 }
 
-# This block of single-line functions below all print to STDERR, leaving STDOUT for piping machine readable information to other software.
-# Above each such function is a commented demonstration of its usage.  Execution continues after an invocation of each function, except
-# the "emergency" function, which causes termination with a non-zero exit status.
+# The block of single-line functions below all print to STDERR, 
+# leaving STDOUT for piping machine readable information to other
+# software. Above each such function is a commented demonstration 
+# of its usage.  Execution continues after an invocation of each 
+# function, except the "emergency" function, which causes 
+# termination with a non-zero exit status.
 
 # emergency "A \"panic\" condition usually affecting multiple apps/servers/sites. At this level it would usually notify all tech staff on call."
 function emergency () {                             echo "$(_fmt emergency) ${@}" 1>&2 || true; exit 1; }

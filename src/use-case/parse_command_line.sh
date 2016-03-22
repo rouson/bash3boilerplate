@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # BASH3 Boilerplate
 #
-# This file:
+#  parse_command_line.sh
 #
-#  - Is a template to write better bash scripts
-#  - Is delete-key friendly, in case you don't need e.g. command line option parsing
+#  - Uses usage information defined in "${__usage}" to parse the command line.
+#  - Defines a function containing commands extracted from the bash3boilerplate
+#    main.sh as part of a refactoring to facilitate wholesale reuse of main.sh's 
+#    contents of without modification.
 #
 # More info:
 #
@@ -20,9 +22,10 @@
 #  - Alexander Rathai (Alexander.Rathai@gmail.com)
 #  - Dr. Damian Rouson (http://www.sourceryinstitute.org/) (documentation)
 #
-# Usage:
+# Usage (as invoked in bootstraph.sh):
 #
-#  LOG_LEVEL=7 ./main.sh -f /tmp/x -d
+#   source parse_command_line.sh
+#   parse_command_line ${@:2}   
 #
 # Licensed under MIT
 # Copyright (c) 2013 Kevin van Zonneveld (http://kvz.io)

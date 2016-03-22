@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 # BASH3 Boilerplate
 #
-# This file:
+#  set_common_switches.sh
 #
-#  - Is a template to write better bash scripts
-#  - Is delete-key friendly, in case you don't need e.g. command line option parsing
+#  - Sets variables that are useful in conjunction with other bash3boilerplate features
+#  - Contains commands extracted from the bash3boilerplate main.sh as part of a refactoring
+#    to facilitate wholesale reuse of main.sh's contents of without modification.
+#
+# Usage (as invoked in bootstrap.sh):
+#
+#  source set_common_switches.sh
 #
 # More info:
 #
@@ -19,10 +24,6 @@
 #  - Izaak Beekman (https://izaakbeekman.com/)
 #  - Alexander Rathai (Alexander.Rathai@gmail.com)
 #  - Dr. Damian Rouson (http://www.sourceryinstitute.org/) (documentation)
-#
-# Usage:
-#
-#  LOG_LEVEL=7 ./main.sh -f /tmp/x -d
 #
 # Licensed under MIT
 # Copyright (c) 2013 Kevin van Zonneveld (http://kvz.io)

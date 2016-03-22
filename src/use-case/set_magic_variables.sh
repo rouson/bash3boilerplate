@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
 # BASH3 Boilerplate
 #
-#  set_usage_file_name.sh
+#  set_magic_variables.sh
 #
-#  - Sets a variable named __usage to the name of a file containing usage information
+#  - Sets the variables __dir, __file, __filename, __base, and __os
 #  - Defines a function containing commands extracted from the bash3boilerplate
 #    main.sh as part of a refactoring to facilitate wholesale reuse of main.sh's 
 #    contents of without modification.
 #
-# Usage (as invoked in bootstrap.sh):
+#  Usage (as invoked in bootstrap.sh):
 #
-#   source set_usage_file_name.sh  
-#   set_usage_file_name "`caller 0`"
+#    source set_magic_variables.sh
 #
 # More info:
 #
@@ -30,10 +29,16 @@
 # Licensed under MIT
 # Copyright (c) 2013 Kevin van Zonneveld (http://kvz.io)
  
-set_usage_file_name(){
-  text_after_final_space="${1##* }" # Extract the final word, which might be preceded by a path
-  text_after_final_slash="${text_after_final_space##*/}" # Extract just the name without the path
-  default_caller_name="${text_after_final_slash:-$text_after_final_space}" # If no slash, use text after final space
-  caller_name="${caller_name:-$default_caller_name}"
-  __usage="${__usage:-${caller_name}-usage}"
+[ -z "${1}" ] && echo 'Usage: source set_magic_variables.sh caller_bash_source_0"' 
+function set_magic_variables(){
+  caller_bash_source_0=$1
+  __dir="$(cd "$(dirname "${caller_bash_source_0}")" && pwd)"
+  __file="${__dir}/$(basename "${caller_bash_source_0}")"
+  __filename="$(basename "${caller_bash_source_0}")"
+  __base="$(basename ${__file} .sh)"
+  __os="Linux"
+  if [[ "${OSTYPE:-}" == "darwin"* ]]; then
+    __os="OSX"
+  fi
 }
+set_magic_variables $@

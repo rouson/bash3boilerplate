@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
-# This file is part of BASH3 Boilerplate
+# BASH3 Boilerplate
 #
-# This file:
+#  bootstrap.sh
 #
-#  - Can be used to quickly include a set of default and helper library functionality
-#  - For fine grained control, just source the desired files manually or copy and paste 
-#    relavant sections into your own script.
+#  - Exports bash3boilerplate features and variables to the invoking script
+#  - Invokes functions containing commands extracted from the bash3boilerplate
+#    main.sh as part of a refactoring to facilitate wholesale reuse of main.sh's 
+#    contents of without modification.
+#
+# Usage (as invoked in my-script.sh): 
+#
+#   source bootstrap.sh "${BASH_SOURCE[0]}" $@
 #
 # More info:
 #
@@ -23,14 +28,13 @@
 #
 # Licensed under MIT
 # Copyright (c) 2013 Kevin van Zonneveld (http://kvz.io)
-#
-# Usage: source bootstrap.sh
-
-source set_environment_and_color.sh # turn on errexit, nounset, pipefail, default log level
-source define_functions.sh          # help/usage function and debug/info output functions
-
-source set_usage_file_name.sh       # define set_usage_page_name function 
-set_usage_file_name "`caller 0`"    # specify the usage file (default: the calling script's name with "-usage" appended)
-source parse_command_line.sh        # provide function to parse usage and then command line
-parse_command_line $@               # do the command line parsing
-source set_common_switches.sh       # provide defaults for -h, -V, and -d
+ 
+caller_bash_source_0="${1}"
+source set_environment_and_color.sh  # turn on errexit, nounset, pipefail, default log level
+source set_magic_variables.sh "${caller_bash_source_0}" # set __dir, __file, __filename, __base, __os
+source define_functions.sh           # help/usage function and debug/info output functions
+source set_usage_file_name.sh        # define set_usage_page_name function 
+set_usage_file_name "`caller 0`"     # specify the usage file (default: the calling script's name with "-usage" appended)
+source parse_command_line.sh         # provide function to parse usage and then command line
+parse_command_line ${@:2}            # do the command line parsing
+source set_common_switches.sh        # provide defaults for -h, -V, and -d
