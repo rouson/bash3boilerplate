@@ -75,7 +75,7 @@ function help () {
   echo "" 1>&2
   echo " ${@}" 1>&2
   echo "" 1>&2
-  cat "${usage_page}" 1>&2
+  cat "${__usage}" 1>&2
   echo "" 1>&2
   exit 1
 }

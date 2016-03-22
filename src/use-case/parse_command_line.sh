@@ -64,7 +64,7 @@ while read line; do
     match="$(echo "${line}" |sed 's#^.*Default=\(\)#\1#g')"
     eval "${varname}=\"${match}\""
   fi
-done < "${usage_page}"
+done < "${__usage}"
 
 # Allow long options like --this
 opts="${opts}-:"

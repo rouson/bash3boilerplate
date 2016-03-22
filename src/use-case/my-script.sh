@@ -40,15 +40,12 @@ if [[ "${OSTYPE:-}" == "darwin"* ]]; then
   __os="OSX"
 fi
 
-# Designate the name of the file containing the current file's usage as the file with "-usage"
-# appended to the current file's name:
-export usage_page="${__filename}-usage"
-
-
-# source all the helper functions and default settings & parse the command line
-# $usage_page gets passed in and used to define command line interface
-source bootstrap.sh
-
+# Source bash3boilerplate helper functions and default settings;
+# parse the command line and the usage page.  Users should edit
+# edit my-script.sh-usage, and/or change its base name 
+# (preceding the "."), and/or set __usage to the name of a file
+# containing usage information in a similar format.
+source bootstrap.sh 
 
 # Setup a function to call when receiving an EXIT signal to do some cleanup. Remove if
 # not needed. Other signals can be trapped too, like SIGINT and SIGTERM.
@@ -71,6 +68,7 @@ info "__file: ${__file}"
 info "__dir: ${__dir}"
 info "__base: ${__base}"
 info "__os: ${__os}"
+info "__usage: ${__usage}"
 
 info "arg_p: ${arg_p}"
 info "arg_d: ${arg_d}"
