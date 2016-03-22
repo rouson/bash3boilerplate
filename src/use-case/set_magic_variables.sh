@@ -41,4 +41,4 @@ function set_magic_variables(){
     __os="OSX"
   fi
 }
-set_magic_variables $@
+set_magic_variables "$@"

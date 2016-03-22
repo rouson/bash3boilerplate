@@ -40,7 +40,7 @@
 # (b) Set several magic variables for the current file and its direcotry.
 # (c) Parse the usage information in "*-usage".
 # (d) Parse the command line using the usage information.  
-source bootstrap.sh "${BASH_SOURCE[0]}" $@
+source bootstrap.sh "${BASH_SOURCE[0]}" "$@"
 ### End of boilerplate -- start edits below this line #########
 
 # Set up a function to call when receiving an EXIT signal to do some cleanup. Remove if
